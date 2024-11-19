@@ -8,8 +8,8 @@ using namespace std;
 using namespace cpr;
 using json = nlohmann::json;
 
-const string API_KEY = "bad88bca35a3f14cca1ff55ee0919340"; // Your OpenWeather API key
-vector<string> favorites; // List of favorite cities (maximum of 3)
+const string API_KEY = "bad88bca35a3f14cca1ff55ee0919340"; 
+vector<string> favorites; 
 
 // Function to fetch and display weather details for a city
 void displayWeather(const string& cityName) {
