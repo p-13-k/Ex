@@ -3,15 +3,11 @@
 #include <vector>
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
-
 using namespace std;
 using namespace cpr;
 using json = nlohmann::json;
-
 const string API_KEY = "bad88bca35a3f14cca1ff55ee0919340"; 
 vector<string> favorites; 
-
-// Function to fetch and display weather details for a city
 void displayWeather(const string& cityName) {
     Response r = cpr::Get(Url{"https://api.openweathermap.org/data/2.5/weather"},
                           Parameters{{"q", cityName}, {"appid", API_KEY}, {"units", "metric"}});
@@ -24,8 +20,6 @@ void displayWeather(const string& cityName) {
     cout << "Temperature: " << data["main"]["temp"] << "°C\n";
     cout << "Description: " << data["weather"][0]["description"] << "\n\n";
 }
-
-// Function to add a city to the favorites list
 void addFavorite(const string& cityName) {
     if (favorites.size() >= 3) {
         cout << "Favorites list is full. Please remove a city first.\n";
@@ -34,8 +28,6 @@ void addFavorite(const string& cityName) {
     favorites.push_back(cityName);
     cout << cityName << " added to favorites.\n";
 }
-
-// Function to remove a city from the favorites list
 void removeFavorite(const string& cityName) {
     auto it = find(favorites.begin(), favorites.end(), cityName);
     if (it != favorites.end()) {
@@ -45,8 +37,6 @@ void removeFavorite(const string& cityName) {
         cout << cityName << " is not in the favorites list.\n";
     }
 }
-
-// Function to display all favorite cities with weather details
 void displayFavorites() {
     if (favorites.empty()) {
         cout << "No favorite cities added yet.\n";
@@ -57,11 +47,9 @@ void displayFavorites() {
         displayWeather(city);
     }
 }
-
 int main() {
     int choice;
     string cityName;
-
     while (true) {
         cout << "1. Search for a city\n";
         cout << "2. Add to favorites\n";
@@ -70,7 +58,6 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-
         switch (choice) {
             case 1:
                 cout << "Enter city name: ";
